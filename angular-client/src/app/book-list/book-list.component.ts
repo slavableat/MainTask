@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Book} from "../book";
 import {BookService} from "../book.service";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -14,7 +14,7 @@ export class BookListComponent implements OnInit {
   public books: Book[] = [];
 
   constructor(private bookService: BookService,
-              private router:Router) {
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,14 +32,14 @@ export class BookListComponent implements OnInit {
       }
     );
   }
-  public deleteBook(id:number){
-    this.bookService.deleteBook(id).subscribe( data => {
+
+  public deleteBook(id: number) {
+    this.bookService.deleteBook(id).subscribe(data => {
       this.getBooks();
     })
   }
-  public editBook(id:number){
-    this.router.navigate(['edit-book',{id:id}]);
-  }
 
-
+  public editBook(id: number) {
+    this.router.navigate(['edit-book', {id: id}]);
   }
+}

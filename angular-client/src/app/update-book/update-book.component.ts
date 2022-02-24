@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {BookService} from "../book.service";
 import {Book} from "../book";
@@ -12,55 +12,59 @@ import {Author} from "../author";
   styleUrls: ['./update-book.component.css']
 })
 export class UpdateBookComponent implements OnInit {
-  oldBook:Book=new Book();
-  id:number;
-  myForm:FormGroup;
-  constructor(private route:ActivatedRoute,
-              private router:Router,
-              private bookService:BookService,
-              private formBuilder:FormBuilder) {
+  oldBook: Book = new Book();
+  id: number;
+  myForm: FormGroup;
+
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private bookService: BookService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
-   this.id=this.route.snapshot.params['id'];
-    this.bookService.getById(this.id).subscribe(data=>{
-      this.oldBook=data;
+    this.id = this.route.snapshot.params['id'];
+    this.bookService.getById(this.id).subscribe(data => {
+      this.oldBook = data;
       this.myForm = this.formBuilder.group({
         "bookName": [this.oldBook.name, [Validators.required]],
-        "bookGenre": [this.oldBook.genre.name, [ Validators.required]],
-        "authors": this.formBuilder.array([
-        ])
+        "bookGenre": [this.oldBook.genre.name, [Validators.required]],
+        "authors": this.formBuilder.array([])
       });
       for (let author of this.oldBook.authors) {
-        if(author!==null && author!==undefined){
+        if (author !== null && author !== undefined) {
           this.getFormsControls().push(new FormControl(author.name, Validators.required));
         }
       }
     }, error => console.log(error));
 
   }
-  addAuthor(){
+
+  addAuthor() {
     this.getFormsControls().push(new FormControl("", Validators.required));
   }
-  deleteAuthor(id:number){
+
+  deleteAuthor(id: number) {
     this.getFormsControls().removeAt(id);
   }
-  getFormsControls() : FormArray{
+
+  getFormsControls(): FormArray {
     return this.myForm.controls['authors'] as FormArray;
   }
-  submit(){
-    let book:Book=new Book();
-    book.genre=new Genre();
-    book.authors=[];
-    book.id=this.id;
+
+  submit() {
+    let book: Book = new Book();
+    book.genre = new Genre();
+    book.authors = [];
+    book.id = this.id;
     for (let formAuthor of this.myForm.value.authors) {
-      let author:Author=new Author();
-      author.name=formAuthor;
+      let author: Author = new Author();
+      author.name = formAuthor;
       book.authors.push(author);
     }
-    book.name=this.myForm.value.bookName;
-    book.genre.name=this.myForm.value.bookGenre;
-    this.bookService.updateBook(book).subscribe(data=>{
+    book.name = this.myForm.value.bookName;
+    book.genre.name = this.myForm.value.bookGenre;
+    this.bookService.updateBook(book).subscribe(data => {
       this.router.navigate(['books']);
       console.log(book);
     });

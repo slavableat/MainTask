@@ -3,17 +3,17 @@
   <div class="form-group">
     <br>
     <label>Имя книги:</label>
-    <input class="form-control" name="name" formControlName="bookName" />
+    <input class="form-control" name="name" formControlName="bookName"/>
   </div>
   <div class="form-group">
     <label>Жанр:</label>
-    <input class="form-control" name="genre" formControlName="bookGenre" />
+    <input class="form-control" name="genre" formControlName="bookGenre"/>
   </div>
   <div formArrayName="authors">
     <label>Авторы:</label>
     <div *ngFor="let author of getFormsControls()['controls']; let i = index">
       <div class="input-group" style="margin-top:15px">
-        <input class="form-control" formControlName="{{i}}" />
+        <input class="form-control" formControlName="{{i}}"/>
         <button class="delete-button btn btn-danger" style="margin-left:10px" (click)="deleteAuthor(i)">
           X
         </button>

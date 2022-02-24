@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Genre} from "../genre";
 import {BookService} from "../book.service";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -11,12 +11,15 @@ import {Author} from "../author";
 })
 export class AuthorListComponent implements OnInit {
 
-  public authors:Author[]=[];
-  constructor(private bookService:BookService) { }
+  public authors: Author[] = [];
+
+  constructor(private bookService: BookService) {
+  }
 
   ngOnInit(): void {
     this.getAuthors();
   }
+
   public getAuthors(): void {
     this.bookService.findAllAuthors().subscribe(
       (response: Genre[]) => {

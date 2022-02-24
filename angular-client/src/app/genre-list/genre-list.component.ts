@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookService} from "../book.service";
 import {Genre} from "../genre";
 import {Book} from "../book";
@@ -10,12 +10,15 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./genre-list.component.css']
 })
 export class GenreListComponent implements OnInit {
-  public genres:Genre[]=[];
-  constructor(private bookService:BookService) { }
+  public genres: Genre[] = [];
+
+  constructor(private bookService: BookService) {
+  }
 
   ngOnInit(): void {
     this.getGenres();
   }
+
   public getGenres(): void {
     this.bookService.findAllGenres().subscribe(
       (response: Genre[]) => {

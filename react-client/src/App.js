@@ -1,4 +1,3 @@
-
 import './App.css';
 
 import BookListComponent from "./components/BookListComponent";
@@ -10,23 +9,23 @@ import AuthorListComponent from "./components/AuthorListComponent";
 
 
 function App() {
-  return (
-      <div>
-          <BrowserRouter>
-      <HeaderComponent/>
-        <div className="container">
-            <Routes>
-                <Route path="/" exact element={<BookListComponent/>}></Route>
-                <Route path="/books" element={<BookListComponent/>}></Route>
-                <Route path="/add-book" element={<AddBookComponent/>}></Route>
-                <Route path="/edit-book/:id" element={<AddBookComponent/>}></Route>
-                <Route path="/genres" element={<GenreListComponent/>}></Route>
-                <Route path="/authors" element={<AuthorListComponent/>}></Route>
-            </Routes>
+    return (
+        <div>
+            <BrowserRouter>
+                <HeaderComponent/>
+                <div className="container">
+                    <Routes>
+                        <Route path="/" exact element={<BookListComponent/>}></Route>
+                        <Route path="/books" element={<BookListComponent/>}></Route>
+                        <Route path="/add-book" element={<AddBookComponent/>}></Route>
+                        <Route path="/edit-book/:id" element={<AddBookComponent/>}></Route>
+                        <Route path="/genres" element={<GenreListComponent/>}></Route>
+                        <Route path="/authors" element={<AuthorListComponent/>}></Route>
+                    </Routes>
+                </div>
+            </BrowserRouter>
         </div>
-          </BrowserRouter>
-      </div>
-  );
+    );
 }
 
 export default App;

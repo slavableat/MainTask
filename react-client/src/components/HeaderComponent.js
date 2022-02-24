@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-function HeaderComponent(){
+function HeaderComponent() {
     return <div>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark justify-content-center">
             <Link to="/books" className="nav-link">Книги</Link>
@@ -9,4 +9,5 @@ function HeaderComponent(){
         </nav>
     </div>
 }
+
 export default HeaderComponent;
