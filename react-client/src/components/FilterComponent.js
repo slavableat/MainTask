@@ -16,8 +16,8 @@ const FilterComponent = ({returnValue, reload}) => {
     }
 
     useEffect(() => {
-        getGenres();
-    }, [])
+        getGenres()
+    })
 
     const submit = (e) => {
         if (genre.toLowerCase().includes("Выберите жанр".toLowerCase())) setGenre("")
@@ -73,7 +73,7 @@ const FilterComponent = ({returnValue, reload}) => {
             <br/>
             <p>Примененные фильтры:</p>
             <ul>
-                {genre !== '' && <li>{genre}</li>}
+                {genre !== '' &&genre!=="Выберите жанр"&& <li>{genre}</li>}
                 {author !== "" && <li>{author}</li>}
             </ul>
         </div>

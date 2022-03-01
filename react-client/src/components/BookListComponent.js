@@ -32,11 +32,12 @@ const BookListComponent = () => {
     }
 
     const deleteBook = (id) => {
-        bookService.deleteBook(id).then(() => {
+        // setBooks(books=> books.filter(book=> book.id!=id))
+         bookService.deleteBook(id).then(() => {
             getBooks()
-        }).catch(error => {
-            console.log(error);
-        })
+         }).catch(error => {
+             console.log(error);
+         })
     }
 
     const returnedValue = (genre, author) => {
@@ -107,7 +108,7 @@ const BookListComponent = () => {
                         </div>
                     </div>
                     <div className=" my-5 col-3">
-                        <FilterComponent reload={reloadBooks} returnValue={returnedValue}/>
+                        <FilterComponent reload={reloadBooks} returnValue={returnedValue} />
                     </div>
                 </div>
             </div>
